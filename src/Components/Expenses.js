@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Expenseitem from "./Expenseitem";
+
 import Expensefilter from "./Expensefilter";
+import Expenselist from "./Expenseslist";
 import Card from "./Card";
 import "./expenses.css";
 const Expenses = (props) => {
@@ -11,6 +12,8 @@ const Expenses = (props) => {
   const filteredarr=props.items.filter((expense)=>{
     return( expense.date.getFullYear().toString()===filteredyear)
   })
+  
+  
   return (
     <div>
       <Card className="expenses">
@@ -18,17 +21,7 @@ const Expenses = (props) => {
           selected={filteredyear}
           onChangeFilter={filterchangehandler}
         />
-        {filteredarr.map((expenses) => {
-          return(
-          <Expenseitem
-            key={expenses.title}
-            title={expenses.title}
-            amount={expenses.amount}
-            date={expenses.date}
-        
-          />
-          )
-        })}
+      <Expenselist items={filteredarr}/>
       </Card>
     </div>
   );
